@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prediction Result | HealthAI+</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="brand"><i class="fa-solid fa-heart-pulse"></i><span>HealthAI+</span></a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/">Home</a></li>
+      <li><a href="/#predict">Disease Prediction</a></li>
+      <li><a href="/#features">Features</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a href="https://github.com" target="_blank" class="btn-github"><i class="fa-brands fa-github"></i> GitHub</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ RESULT HERO ============ -->
+<section class="result-hero">
+  <div class="container-xl">
+
+    <div class="success-banner animate-in">
+      <div class="icon-circle"><i class="fa-solid fa-check"></i></div>
+      <div>
+        <h4>Prediction Completed Successfully</h4>
+        <p>Here's your personalized health report based on the symptoms you selected.</p>
+      </div>
+    </div>
+
+    <div class="disease-hero-card animate-in" style="animation-delay:.1s">
+      <div>
+        <div class="label">Predicted Condition</div>
+        <h1>{{ disease }}</h1>
+      </div>
+      <div class="disease-icon"><i class="fa-solid fa-notes-medical"></i></div>
+    </div>
+
+    <div class="result-grid">
+
+      <div class="result-card full animate-in" style="animation-delay:.15s">
+        <div class="result-card-head">
+          <div class="icon icon-desc"><i class="fa-solid fa-circle-info"></i></div>
+          <h3>About This Condition</h3>
+        </div>
+        <p>{{ description }}</p>
+      </div>
+
+      <div class="result-card animate-in" style="animation-delay:.2s">
+        <div class="result-card-head">
+          <div class="icon icon-med"><i class="fa-solid fa-pills"></i></div>
+          <h3>Recommended Medicine</h3>
+        </div>
+        <div class="chip-list">
+          {% for item in medicine %}
+          <span>{{ item }}</span>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="result-card animate-in" style="animation-delay:.25s">
+        <div class="result-card-head">
+          <div class="icon icon-diet"><i class="fa-solid fa-bowl-food"></i></div>
+          <h3>Diet Plan</h3>
+        </div>
+        <div class="chip-list">
+          {% for item in diet %}
+          <span>{{ item }}</span>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="result-card animate-in" style="animation-delay:.3s">
+        <div class="result-card-head">
+          <div class="icon icon-exercise"><i class="fa-solid fa-dumbbell"></i></div>
+          <h3>Exercise Suggestion</h3>
+        </div>
+        <div class="chip-list">
+          {% for item in exercise %}
+          <span>{{ item }}</span>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="result-card animate-in" style="animation-delay:.35s">
+        <div class="result-card-head">
+          <div class="icon icon-doctor"><i class="fa-solid fa-user-doctor"></i></div>
+          <h3>Recommended Doctor</h3>
+        </div>
+        <p>{{ doctor }}</p>
+      </div>
+
+      <div class="result-card full animate-in" style="animation-delay:.4s">
+        <div class="result-card-head">
+          <div class="icon icon-precaution"><i class="fa-solid fa-shield-heart"></i></div>
+          <h3>Precautions</h3>
+        </div>
+        <ul class="checklist">
+          {% for item in precautions %}
+          <li><i class="fa-solid fa-circle-check"></i><span>{{ item }}</span></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="result-actions animate-in" style="animation-delay:.45s">
+      <a href="/#predict" class="btn btn-outline btn-lg"><i class="fa-solid fa-rotate-left"></i> Try Again</a>
+      <a href="/" class="btn btn-primary btn-lg"><i class="fa-solid fa-house"></i> Back to Home</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container-xl">
+    <div class="footer-bottom">
+      &copy; 2026 HealthAI+. All rights reserved. This report is for informational purposes only and does not replace professional medical advice.
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

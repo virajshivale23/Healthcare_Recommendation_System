@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HealthAI+ | Personalized Healthcare & Medicine Recommendation System</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="brand"><i class="fa-solid fa-heart-pulse"></i><span>HealthAI+</span></a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#predict">Disease Prediction</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a href="https://github.com" target="_blank" class="btn-github"><i class="fa-brands fa-github"></i> GitHub</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-badge"><i class="fa-solid fa-sparkles"></i> Powered by Machine Learning</span>
+      <h1>AI Powered <span class="grad">Personalized Healthcare</span> Recommendation System</h1>
+      <p class="lead">Predict diseases using Machine Learning and receive healthcare recommendations instantly — medicine, diet, exercise, and doctor guidance in one place.</p>
+      <div class="hero-actions">
+        <a href="#predict" class="btn btn-primary btn-lg"><i class="fa-solid fa-stethoscope"></i> Predict Disease</a>
+        <a href="#features" class="btn btn-outline btn-lg">Learn More</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-orb"></div>
+      <div class="float-icon i1"><i class="fa-solid fa-pills"></i></div>
+      <div class="float-icon i2"><i class="fa-solid fa-heart"></i></div>
+      <div class="float-icon i3"><i class="fa-solid fa-dna"></i></div>
+      <div class="float-icon i4"><i class="fa-solid fa-user-doctor"></i></div>
+      <div class="hero-card">
+        <div class="pulse-ring"><i class="fa-solid fa-wave-square"></i></div>
+        <h4>Real-Time Analysis</h4>
+        <p>Instant, data-driven health insights from your symptoms</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="stats">
+  <div class="container-xl">
+    <div class="stats-grid">
+      <div class="stat-card reveal">
+        <span class="stat-num" data-count="132" data-suffix="+">0</span>
+        <span class="stat-label">Symptoms</span>
+      </div>
+      <div class="stat-card reveal">
+        <span class="stat-num" data-count="41" data-suffix="+">0</span>
+        <span class="stat-label">Diseases</span>
+      </div>
+      <div class="stat-card reveal">
+        <span class="stat-num" data-count="95" data-suffix="%">0</span>
+        <span class="stat-label">Model Accuracy</span>
+      </div>
+      <div class="stat-card reveal">
+        <span class="stat-num" data-count="24" data-suffix="/7">0</span>
+        <span class="stat-label">AI Assistance</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DISEASE PREDICTION ============ -->
+<section class="predict-section" id="predict">
+  <div class="container-xl">
+    <div class="section-head reveal">
+      <span class="eyebrow">Disease Prediction</span>
+      <h2>Tell Us What You're Feeling</h2>
+      <p>Select your symptoms below and let our ML model do the rest.</p>
+    </div>
+
+    <div class="predict-card reveal">
+      <form action="/predict" method="POST" id="predictForm">
+
+        <div class="search-wrap">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="symptomSearch" placeholder="Search symptoms, e.g. headache, fever, cough...">
+        </div>
+
+        <div class="symptom-box" id="symptomList">
+          {% for symptom in symptoms %}
+          <label class="symptom-chip" data-label="{{ symptom.replace('_',' ') }}">
+            <input type="checkbox" name="symptoms" value="{{ symptom }}">
+            <span>{{ symptom.replace('_',' ').title() }}</span>
+          </label>
+          {% endfor %}
+        </div>
+
+        <div class="selected-count" id="selectedCount">
+          <i class="fa-solid fa-circle-check"></i> <b>0</b> symptoms selected
+        </div>
+
+        <div class="predict-btn-wrap">
+          <button type="submit" class="btn btn-primary btn-block btn-lg">
+            <i class="fa-solid fa-brain"></i> Predict Disease
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section class="features" id="features">
+  <div class="container-xl">
+    <div class="section-head reveal">
+      <span class="eyebrow">What We Offer</span>
+      <h2>Everything You Need in One Place</h2>
+      <p>A complete healthcare companion, from prediction to prevention.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+        <h3>Disease Prediction</h3>
+        <p>Machine learning models trained on real clinical symptom data to identify likely conditions accurately.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="fa-solid fa-pills"></i></div>
+        <h3>Medicine Recommendation</h3>
+        <p>Get curated medicine suggestions tailored to your predicted condition and symptom profile.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="fa-solid fa-bowl-food"></i></div>
+        <h3>Diet Planning</h3>
+        <p>Personalized dietary guidance to support recovery and long-term wellbeing.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <h3>Exercise Suggestion</h3>
+        <p>Safe, condition-appropriate exercise routines to help you stay active during recovery.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="fa-solid fa-user-doctor"></i></div>
+        <h3>Doctor Recommendation</h3>
+        <p>Know exactly which specialist to consult based on your predicted condition.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="fa-solid fa-shield-heart"></i></div>
+        <h3>Preventive Care</h3>
+        <p>Actionable precautions and preventive checklists to reduce the risk of complications.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY CHOOSE US ============ -->
+<section class="why" id="about">
+  <div class="container-xl">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why Choose Us</span>
+      <h2>Built for Trust, Speed & Accuracy</h2>
+      <p>Designed around research-backed models and a seamless user experience.</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <i class="fa-solid fa-microchip"></i>
+        <h3>AI Powered</h3>
+        <p>Backed by trained machine learning models that continuously improve prediction quality.</p>
+      </div>
+      <div class="why-card reveal">
+        <i class="fa-solid fa-bolt"></i>
+        <h3>Fast Prediction</h3>
+        <p>Get results in seconds — no waiting rooms, no delays, just instant health insights.</p>
+      </div>
+      <div class="why-card reveal">
+        <i class="fa-solid fa-shield-check"></i>
+        <h3>Reliable Recommendation</h3>
+        <p>Recommendations grounded in verified medical reference data for peace of mind.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer" id="contact">
+  <div class="container-xl">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="brand"><i class="fa-solid fa-heart-pulse"></i><span>HealthAI+</span></a>
+        <p>An AI-powered platform that predicts diseases from symptoms and delivers personalized healthcare recommendations.</p>
+        <div class="social-icons">
+          <a href="#"><i class="fa-brands fa-github"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#predict">Disease Prediction</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>Resources</h5>
+        <ul>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">API Reference</a></li>
+          <li><a href="#">GitHub Repo</a></li>
+          <li><a href="#">Model Details</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>Contact</h5>
+        <div class="contact-item"><i class="fa-solid fa-envelope"></i><span>contact@healthai.plus</span></div>
+        <div class="contact-item"><i class="fa-solid fa-location-dot"></i><span>Pune, Maharashtra, India</span></div>
+        <div class="contact-item"><i class="fa-solid fa-phone"></i><span>+91 98765 43210</span></div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2026 HealthAI+. All rights reserved. Built for research & educational purposes only — not a substitute for professional medical advice.
+    </div>
+  </div>
+</footer>
+
+<!-- ============ SPINNER OVERLAY ============ -->
+<div class="spinner-overlay" id="spinnerOverlay">
+  <div class="spinner"></div>
+  <p>Analyzing your symptoms...</p>
+</div>
+
+<!-- ============ BACK TO TOP ============ -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
