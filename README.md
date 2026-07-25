@@ -323,7 +323,7 @@ GitHub:
 https://github.com/virajshivale23
 
 LinkedIn:
-(Add your LinkedIn URL)
+https://www.linkedin.com/in/viraj-shivale-108170290/
 
 ---
 
